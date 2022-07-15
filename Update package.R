@@ -5,6 +5,8 @@
 library(devtools)
 library(roxygen2)
 
+setwd('./PHInfo')
+
 document()
 
 #once the documentation has been updated, upload the new files to the github folder
