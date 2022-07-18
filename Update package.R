@@ -11,4 +11,4 @@ document()
 
 #once the documentation has been updated, upload the new files to the github folder
 #then can download the updated package with:
-#devtools::install_github('PHinfo','ReverieNB')
+#devtools::install_github("ReverieNB/PHinfo")
