@@ -3,7 +3,6 @@ Type: Package
 Title: Functions used for PH Informatics
 Version: 0.1.0
 Author: Nate IB
-Maintainer: Nate
 Description: Functions used in DataBricks and desktop RStudio.
 Encoding: UTF-8
 LazyData: true
