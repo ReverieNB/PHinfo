@@ -3,4 +3,7 @@
 export("%>%")
 export(catch_dupes)
 export(census_age_grp)
+export(fix_city)
+export(pipe_print)
+export(read_qualtrics)
 importFrom(magrittr,"%>%")
