@@ -60,7 +60,7 @@ hc_categorical <- c("#005aaa", "#6dcff6", "#113c66", "#f7931d", "#543079", "#ffc
 #'
 #' @export
 
-hc_diverging <- c("#f7931d", "#ffcb04", "#dfe0de", "#bfa2cd", "#9e76b4", "#543079", "#5ba345", "#9ecb3a", "#dfe0de", "88bfe7",
+hc_diverging <- c("#f7931d", "#ffcb04", "#dfe0de", "#bfa2cd", "#9e76b4", "#543079", "#5ba345", "#9ecb3a", "#dfe0de", "#88bfe7",
                   "#4896c8", "#113c66")
 
 #' Base Blue.
