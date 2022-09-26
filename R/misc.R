@@ -12,7 +12,7 @@
 #'
 #' @export
 
-raw <- "/dbfs/mnt/phmdw/Raw/PublicHealth/"
+Raw <- "/dbfs/mnt/phmdw/Raw/PublicHealth/"
 
 #' Data lake folder path.
 #'
@@ -20,7 +20,7 @@ raw <- "/dbfs/mnt/phmdw/Raw/PublicHealth/"
 #'
 #' @export
 
-refined <- "/dbfs/mnt/phmdw/Refined/PublicHealth/"
+Refined <- "/dbfs/mnt/phmdw/Refined/PublicHealth/"
 
 #' Data lake folder path.
 #'
@@ -28,7 +28,7 @@ refined <- "/dbfs/mnt/phmdw/Refined/PublicHealth/"
 #'
 #' @export
 
-trusted <- "/dbfs/mnt/phmdw/Trusted/PublicHealth/"
+Trusted <- "/dbfs/mnt/phmdw/Trusted/PublicHealth/"
 
 #' Data lake folder path.
 #'
