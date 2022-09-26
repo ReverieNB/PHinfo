@@ -12,6 +12,7 @@ catch_logical <- function(x){
 
   if (nrow(temp) == 0){
     print("No logical columns found")
+    return(x)
   } else {
     stop(paste(nrow(temp), ifelse(nrow(temp)==1, "column is", "columns are"), "logical:", unique(temp$columns)))
   }
