@@ -7,7 +7,7 @@
 #'
 fix_city <- function(data, x){
 
-  city_fix <- readr::read_csv("/dbfs/mnt/phmdw/Raw/PublicHealth/Reference/CityNameFix.txt") %>%
+  city_fix <- readr::read_csv("/dbfs/mnt/phmdw/Trusted/PublicHealth/Reference/MN geography/CityNameFix.txt") %>%
     janitor::clean_names()
 
   temp <- data %>%
