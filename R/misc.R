@@ -32,6 +32,14 @@ Trusted <- "/dbfs/mnt/phmdw/Trusted/PublicHealth/"
 
 #' Data lake folder path.
 #'
+#' Trusted reference folder path
+#'
+#' @export
+
+reference <- "/dbfs/mnt/phmdw/Trusted/PublicHealth/Reference/"
+
+#' Data lake folder path.
+#'
 #' COVID data lake path
 #'
 #' @export
