@@ -20,5 +20,7 @@ read_delim_nologic <- function(x, ...){ #this will be a slow function because th
                           col_types = fixes[[1]],
                           ...)
 
+  print(problems(temp))
+
   return(temp)
 }
