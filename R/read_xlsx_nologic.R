@@ -7,7 +7,9 @@
 read_xlsx_nologic <- function(x, ...){ #this will be a slow function because things are being read in twice
 
   #get list of all column types, adjust logical types
-  fixes <- readxl::read_xlsx(x, ...) %>%
+  fixes <- readxl::read_xlsx(x,
+                             n_max = 1001,
+                             ...) %>%
     purrr::map_df(class) %>%
     dplyr::slice(1) %>%
     dplyr::mutate(dplyr::across(everything(), ~ ifelse(. == "logical", "text", "guess"))) %>%

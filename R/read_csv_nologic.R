@@ -7,7 +7,9 @@
 read_csv_nologic <- function(x, ...){ #this will be a slow function because things are being read in twice
 
   #get list of all logical columns
-  logic <- readr::read_csv(x, ...) %>%
+  logic <- readr::read_csv(x,
+                           n_max = 1001,
+                           ...) %>%
     dplyr::select(where(is.logical))
 
   fixes <- list(rep("c", length(names(logic))))
