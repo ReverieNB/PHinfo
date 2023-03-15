@@ -8,7 +8,6 @@ read_csv_nologic <- function(x, ...){ #this will be a slow function because thin
 
   #get list of all logical columns
   logic <- readr::read_csv(x,
-                           n_max = 1001,
                            ...) %>%
     dplyr::select(where(is.logical))
 

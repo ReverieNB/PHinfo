@@ -8,7 +8,6 @@ read_xlsx_nologic <- function(x, ...){ #this will be a slow function because thi
 
   #get list of all column types, adjust logical types
   fixes <- readxl::read_xlsx(x,
-                             n_max = 1001,
                              ...) %>%
     purrr::map_df(class) %>%
     dplyr::slice(1) %>%

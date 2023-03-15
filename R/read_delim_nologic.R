@@ -8,7 +8,6 @@ read_delim_nologic <- function(x, ...){ #this will be a slow function because th
 
   #get list of all logical columns
   logic <- readr::read_delim(x,
-                           n_max = 1001,
                            ...) %>%
     dplyr::select(where(is.logical))
 
