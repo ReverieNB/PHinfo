@@ -4,7 +4,7 @@
 \alias{clean_match}
 \title{Clean data before probabilistic matching.}
 \usage{
-clean_match(x, first = "first_name", last = "last_name")
+clean_match(x, first = "first_name", last = "last_name", multi_flag = FALSE)
 }
 \arguments{
 \item{x}{a dataframe}
@@ -12,6 +12,8 @@ clean_match(x, first = "first_name", last = "last_name")
 \item{first}{name of variable with first name}
 
 \item{last}{name of variable with first name}
+
+\item{multi_flag}{will flag last names that appear to be multi-part for use later in the matching process}
 }
 \description{
 Clean first and last name fields before matching with RecordLinkage or other tools.
