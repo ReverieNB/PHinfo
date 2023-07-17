@@ -21,7 +21,7 @@ match_dates <- function(data, date1, date2, exact = FALSE, switch = TRUE, thresh
 
   dt_trans <- data |>
     dplyr::mutate(d1 = !!sym(date1),
-                  d2 = !!sym(date1),
+                  d2 = !!sym(date2),
                   dplyr::across(d1:d2, as.Date),
                   dplyr::across(d1:d2, as.numeric, .names = "{.col}_num"),
                   dif = abs(d1_num - d2_num),
