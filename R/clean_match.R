@@ -32,6 +32,7 @@ clean_match <- function(x, first = "first_name", last = "last_name", multi_flag 
 
   } else {
 
+    print(paste(sum(temp$last_flag), "potential multi-part last names IDed."))
     return(temp)
 
   }
