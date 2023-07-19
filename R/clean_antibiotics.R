@@ -28,6 +28,8 @@ clean_antibiotics <- function(data, input = "antibiotic_treatment", output = "an
                     stringr::str_detect(stringr::str_to_lower(.), "^macrobid") ~ "Macrobid",
                     stringr::str_detect(stringr::str_to_lower(.), "^vibramycin") ~ "Vibramycin",
                     stringr::str_detect(stringr::str_to_lower(.), "^tenofovir") ~ "Tenofovir",
+                    stringr::str_detect(stringr::str_to_lower(.), "^gentamicin") ~ "Gentamicin",
+                    stringr::str_detect(stringr::str_to_lower(.), "^cefoxitin") ~ "Other",
                     stringr::str_detect(stringr::str_to_lower(.), "levaquin") ~ "Levaquin",
                     .default = .)),
 
