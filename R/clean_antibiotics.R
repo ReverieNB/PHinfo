@@ -22,7 +22,7 @@ clean_antibiotics <- function(data, input = "antibiotic_treatment", output = "an
                     stringr::str_detect(stringr::str_to_lower(.), "^doxycycline") ~ "Doxycycline",
                     stringr::str_detect(stringr::str_to_lower(.), "^cefixime") ~ "Cefixime",
                     stringr::str_detect(stringr::str_to_lower(.), "^ceftriaxone") ~ "Ceftriaxone",
-                    stringr::str_detect(stringr::str_to_lower(.), "^gentamicin|^gentamicin") ~ "Gentamycin",
+                    stringr::str_detect(stringr::str_to_lower(.), "^gentamicin|^gentamycin") ~ "Gentamycin",
                     stringr::str_detect(stringr::str_to_lower(.), "^cefadroxil") ~ "Cefadroxil",
                     stringr::str_detect(stringr::str_to_lower(.), "^clindamycin") ~ "Clindamycin",
                     stringr::str_detect(stringr::str_to_lower(.), "^cipro") ~ "Cipro",
@@ -31,6 +31,7 @@ clean_antibiotics <- function(data, input = "antibiotic_treatment", output = "an
                     stringr::str_detect(stringr::str_to_lower(.), "^vibramycin") ~ "Vibramycin",
                     stringr::str_detect(stringr::str_to_lower(.), "^tenofovir") ~ "Tenofovir",
                     stringr::str_detect(stringr::str_to_lower(.), "^cefoxitin") ~ "Other",
+                    stringr::str_detect(stringr::str_to_lower(.), "^vibramycin") ~ "Vibramycin",
                     stringr::str_detect(stringr::str_to_lower(.), "levaquin") ~ "Levaquin",
                     .default = .)),
 
