@@ -5,9 +5,10 @@
 #' @param input1 a column with data for the first regimen
 #' @param input2 a column with data for the second regimen
 #' @param output the name of the new, combined variable
+#' @param drop drop the input columns? Default is TRUE.
 #' @export
 
-combine_regimens <- function(data, input1, input2, output = "antibiotic_treatment"){
+combine_regimens <- function(data, input1, input2, output = "antibiotic_treatment", drop = TRUE){
 
   #Break each drug into its own column
   data2 <- data |>
@@ -28,5 +29,7 @@ combine_regimens <- function(data, input1, input2, output = "antibiotic_treatmen
     return(antibiotic_treatment)
   })
 
-  return(data2 |> bind_cols(ab_ordered))
+  return(data2 %>%
+           {if (drop == TRUE){select(., -c(!!sym(input1), !!sym(input1)))} else .} %>%
+           bind_cols(ab_ordered))
 }

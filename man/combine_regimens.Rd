@@ -4,7 +4,13 @@
 \alias{combine_regimens}
 \title{Combine STI antibiotic treatment regimens}
 \usage{
-combine_regimens(data, input1, input2, output = "antibiotic_treatment")
+combine_regimens(
+  data,
+  input1,
+  input2,
+  output = "antibiotic_treatment",
+  drop = TRUE
+)
 }
 \arguments{
 \item{data}{a dataframe with multiple treatment regimens}
@@ -14,6 +20,8 @@ combine_regimens(data, input1, input2, output = "antibiotic_treatment")
 \item{input2}{a column with data for the second regimen}
 
 \item{output}{the name of the new, combined variable}
+
+\item{drop}{drop the input columns? Default is TRUE.}
 }
 \description{
 Combine drugs included in separate treatment regimens after using clean_antibiotics. Will deduplicate and order all drugs alphabetically in a single column.
