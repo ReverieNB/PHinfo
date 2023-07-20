@@ -29,7 +29,7 @@ combine_regimens <- function(data, input1, input2, output = "antibiotic_treatmen
     return(antibiotic_treatment)
   })
 
-  return(data2 %>%
-           {if (drop == TRUE){select(., -c(!!sym(input1), !!sym(input1)))} else .} %>%
+  return(data %>%
+           {if (drop == TRUE){select(., -c(!!sym(input1), !!sym(input2)))} else .} %>%
            bind_cols(ab_ordered))
 }
