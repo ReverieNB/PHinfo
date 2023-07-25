@@ -18,7 +18,8 @@
 
 clean_match <- function(x, first = "first_name", last = "last_name", multi_flag = FALSE){
   temp <- x |>
-    dplyr::mutate(last_flag = ifelse(stringr::str_detect(!!sym(last), "\\-|^[:upper:]\\w\\w\\w+[:upper:]\\w\\w\\w+"), 1, 0),
+    dplyr::mutate({{last}} := stringr::str_to_title(!!sym(last)), #next line will have issues if its already all upper
+                  last_flag = ifelse(stringr::str_detect(!!sym(last), "\\-|^[:upper:]\\w\\w\\w+[:upper:]\\w\\w\\w+"), 1, 0),
                   dplyr::across(c(tidyselect::all_of(first), tidyselect::all_of(last)), ~stringr::str_remove_all(.x, "[[:punct:]]")),
                   dplyr::across(c(tidyselect::all_of(first), tidyselect::all_of(last)), toupper),
                   dplyr::across(c(tidyselect::all_of(first), tidyselect::all_of(last)), ~stringr::str_remove_all(.x, " JR| IV| III| II| SR$")),
