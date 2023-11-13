@@ -1,9 +1,9 @@
 #' Impute missing date information.
 #'
-#' Impute missing information for dates in character, YYYYMMDD, format. Used in HIV and HIV D2C scripts.
+#' Impute missing information for dates in character, YYYYMMDD, format. Used in HIV and HIV D2C scripts. Not useful for dates in other formats.
 #' @param x a dataframe
-#' @param month name of variable with first name
-#' @param year name of variable with first name
+#' @param month the value imputed for a missing month
+#' @param year the value imputed for a missing day
 #' @export
 
 impute_date <- function(x, month = "06", day = "15"){

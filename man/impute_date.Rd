@@ -9,10 +9,10 @@ impute_date(x, month = "06", day = "15")
 \arguments{
 \item{x}{a dataframe}
 
-\item{month}{name of variable with first name}
+\item{month}{the value imputed for a missing month}
 
-\item{year}{name of variable with first name}
+\item{year}{the value imputed for a missing day}
 }
 \description{
-Impute missing information for dates in character, YYYYMMDD, format. Used in HIV and HIV D2C scripts.
+Impute missing information for dates in character, YYYYMMDD, format. Used in HIV and HIV D2C scripts. Not useful for dates in other formats.
 }
