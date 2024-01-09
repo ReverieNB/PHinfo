@@ -1,0 +1,12 @@
+CLONE
+Set directory
+cd Documents
+
+Verify directory
+cd -
+
+Clone repository to directory
+git clone https://github.com/ReverieNB/PHinfo.git
+
+PUSH CHANGES TO GITHUB
+gut push PHinfo main
