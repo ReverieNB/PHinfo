@@ -9,7 +9,7 @@ expect_range(data, value_pairs, na_accept = FALSE, warn = FALSE)
 \arguments{
 \item{data}{a dataframe with data to validate}
 
-\item{value_pairs}{a named list of columns and their acceptable range (a vector with a minimum and maximum)}
+\item{value_pairs}{a named list of columns and their acceptable range (a vector with a minimum and maximum number or date in the YMD format)}
 
 \item{na_accept}{should NA values be considered valid?}
 

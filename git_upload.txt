@@ -1,12 +1,34 @@
+# BASIC BASH CODE FOR UPLOADING CHANGES TO PHINFO REPO #
+
+#Set directory#
+cd /c/Users/NAIM001/PHinfo
+
+#Check for repo updates#
+git pull
+
+#Change into different branch (not necessary atm, just use main)#
+git checkout main
+
+#Stage files for update
+git add git_update.txt expect_range.R
+
+#Commit & add comment#
+git commit -m "<note>"
+
+#Push changes
+git push
+
+# OTHER NOTES #
 CLONE
-Set directory
-cd Documents
 
 Verify directory
 cd -
 
+Set directory
+cd Documents
+
 Clone repository to directory
 git clone https://github.com/ReverieNB/PHinfo.git
 
-PUSH CHANGES TO GITHUB
-gut push PHinfo main
+# RESOURCES #
+https://docs.github.com/en/get-started/using-git/about-git
