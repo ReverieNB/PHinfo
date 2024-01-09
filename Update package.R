@@ -5,7 +5,7 @@
 library(devtools)
 library(roxygen2)
 
-setwd('./PHInfo')
+#setwd('./PHInfo')
 
 document()
 
