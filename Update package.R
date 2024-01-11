@@ -6,6 +6,7 @@ library(devtools)
 library(roxygen2)
 
 #setwd('./PHInfo')
+setwd('C:/Users/NAIM001/PHinfo')
 
 document()
 

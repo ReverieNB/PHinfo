@@ -8,7 +8,9 @@
 fix_city <- function(data, x){
 
   city_fix <- readr::read_csv("/dbfs/mnt/phmdw/Trusted/PublicHealth/Reference/MN geography/CityNameFix.txt") %>%
-    janitor::clean_names()
+    janitor::clean_names() |>
+    dplyr::distinct()
+    
 
   temp <- data %>%
     dplyr::mutate({{x}} := toupper(!!sym(x))) %>%

@@ -7,10 +7,11 @@ cd /c/Users/NAIM001/PHinfo
 git pull
 
 #Change into different branch (not necessary atm, just use main)#
+#But this will also print files that have changed, useful for next code#
 git checkout main
 
 #Stage files for update
-git add git_update.txt expect_range.R
+git add git_update.txt R/expect_range.R 'Update Package.R'
 
 #Commit & add comment#
 git commit -m "<note>"
