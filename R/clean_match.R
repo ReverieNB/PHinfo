@@ -22,7 +22,7 @@ clean_match <- function(x, first = "first_name", last = "last_name", multi_flag 
                   last_flag = ifelse(stringr::str_detect(!!sym(last), "\\-|^[:upper:]\\w\\w\\w+[:upper:]\\w\\w\\w+"), 1, 0),
                   dplyr::across(c(tidyselect::all_of(first), tidyselect::all_of(last)), ~stringr::str_remove_all(.x, "[[:punct:]]")),
                   dplyr::across(c(tidyselect::all_of(first), tidyselect::all_of(last)), toupper),
-                  dplyr::across(c(tidyselect::all_of(first), tidyselect::all_of(last)), ~stringr::str_remove_all(.x, " JR| IV| III| II| SR$")),
+                  dplyr::across(c(tidyselect::all_of(first), tidyselect::all_of(last)), ~stringr::str_remove_all(.x, " JR| IV$| III| II| SR$")),
                   {{last}} := stringr::str_trim(!!sym(last)),
                   last_flag = ifelse(stringr::str_detect(!!sym(last), "\\s"), 1, last_flag),
                   dplyr::across(c(tidyselect::all_of(first), tidyselect::all_of(last)), ~stringr::str_remove_all(.x, " ")))
