@@ -20,7 +20,7 @@ check_expectations <- function(data, fail = TRUE, export = TRUE, export_keep = N
   #Identify invalid values
   violations <- data |>
     filter(if_any(starts_with("exp_"), ~ . == FALSE)) |>
-    select(!starts_with("exp_") | where(~ is.logical(.) && !all(.))) |> #remove exp_ columns with no violations
+    select(!starts_with("exp_") | where(~ is.logical(.) && !all(., na.rm = TRUE))) |> #remove exp_ columns with no violations
     relocate(starts_with("exp_"))
   
   #Only keep relevant non-'exp' columns as well
