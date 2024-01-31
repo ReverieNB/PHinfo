@@ -31,7 +31,7 @@ expect_missing <- function(data, value_pairs, warn = FALSE){
     
     #Warn, if TRUE
     if (warn == TRUE & log_value == FALSE){
-      print(paste0("Expectation violated: Percent *MISSING* (", p_missing*100, "%) in *", temp_col, "* exceeded expected (", temp_perc*100, "%)"))
+      message(paste0("Expectation violated: Percent *MISSING* (", p_missing*100, "%) in *", temp_col, "* exceeded expected (", temp_perc*100, "%)"))
     }
     
     #Create exp_ column, return

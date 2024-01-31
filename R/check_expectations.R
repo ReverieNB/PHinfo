@@ -15,7 +15,7 @@ check_expectations <- function(data, fail = TRUE, export = TRUE, export_keep = N
   }
   
   #Print relevant validation information.
-  print(str_c("Validating data using ", length(names(data)[str_detect(names(data), "^exp_")]), " conditions."))
+  message(str_c("Validating data using ", length(names(data)[str_detect(names(data), "^exp_")]), " conditions."))
   
   #Identify invalid values
   violations <- data |>
@@ -32,7 +32,7 @@ check_expectations <- function(data, fail = TRUE, export = TRUE, export_keep = N
   
   #If there are no violations, return a DF along with an appropriate message
   if (nrow(violations) == 0){
-    print("All expectations satisfied. Validation successful.")
+    message("All expectations satisfied. Validation successful.")
     return(data |> select(-starts_with("exp_"))) #remove metadata columns
   } 
   
@@ -51,7 +51,7 @@ check_expectations <- function(data, fail = TRUE, export = TRUE, export_keep = N
       filter(!!sym(x) == FALSE) |>
       nrow()
     
-    print(str_c(vnum, " ", if_else(vnum == 1, "violation", "violations"), " of the expected *", str_to_upper(vtype), "* in *", coln, "*"))
+    message(str_c(vnum, " ", if_else(vnum == 1, "violation", "violations"), " of the expected *", str_to_upper(vtype), "* in *", coln, "*"))
   })
   
   #Export up to the first 1,000 violations if export == TRUE
@@ -61,14 +61,14 @@ check_expectations <- function(data, fail = TRUE, export = TRUE, export_keep = N
     
     #exp_name <- str_c(deparse(substitute(data)), "_violations")
     assign("violations_export", violations_export, envir = globalenv())
-    print("Up to the first 1,000 violations written to *violations_export* dataframe.")
+    message("Up to the first 1,000 violations written to *violations_export* dataframe.")
   }
   
   #Stop or return data based on failure preference
   if (fail == TRUE){
     stop("Violations flagged. Data validation failed.")
   } else if (fail == FALSE){
-    print("Violations flagged. Review output data.")
+    message("Violations flagged. Review output data.")
     return(data |> select(-starts_with("exp_")))   
   }
 }

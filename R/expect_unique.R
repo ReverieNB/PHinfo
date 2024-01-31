@@ -50,7 +50,7 @@ expect_unique <- function(data, columns, warn = FALSE){
       
       cnt <- dupe_col |> pull(1)
       cnt <- length(cnt[cnt == FALSE])
-      print(str_c(cnt, " *DUPLICATE* ", if_else(cnt == 1, "value", "values"),  " found in *", paste(temp_col, collapse = ","), "*"))
+      message(str_c(cnt, " *DUPLICATE* ", if_else(cnt == 1, "value", "values"),  " found in *", paste(temp_col, collapse = ","), "*"))
     }
     return(dupe_col)
   })

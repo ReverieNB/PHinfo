@@ -32,7 +32,7 @@ expect_type <- function(data, value_pairs, warn = FALSE){
       
       #If warn is TRUE, notify of violations
       if (warn == TRUE & log_value[1,1] == FALSE){
-        print(paste0("Expectation violated: *", temp_col, "* is not *", str_to_upper(temp_type), "* type"))
+        message(paste0("Expectation violated: *", temp_col, "* is not *", str_to_upper(temp_type), "* type"))
       }
       
       return(log_value)

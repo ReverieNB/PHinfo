@@ -26,7 +26,7 @@ expect_values <- function(data, value_pairs, na_accept = FALSE, warn = FALSE){
     #If warn is true, print out number of violations
     if (warn == TRUE){
       viols <- nrow(filter(meta_col, !!sym(names(meta_col)[1]) == FALSE))
-      print(str_c(viols, " ", if_else(viols == 1, "violation", "violations"), " of the expected *VALUES* in *", temp_col, "*"))
+      message(str_c(viols, " ", if_else(viols == 1, "violation", "violations"), " of the expected *VALUES* in *", temp_col, "*"))
     }
     
     return(meta_col)
