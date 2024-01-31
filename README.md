@@ -1,2 +1,2 @@
 # PHinfo
- Functions used for PH Informatics
+ Functions used for Public Health Informatics
