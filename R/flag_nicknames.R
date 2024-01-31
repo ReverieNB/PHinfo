@@ -52,5 +52,7 @@ flag_nicknames <- function(data, name1 = "first_name_1", name2 = "first_name_2")
     return(nickname_flag)
   })
   
+  nns <- sum(bind_rows(temp))
+  message(paste0(nns, " given name - nickname match", if_else(nns == 1, " IDed.", "es IDed.")))
   return(cbind(data, bind_rows(temp)))
 }
