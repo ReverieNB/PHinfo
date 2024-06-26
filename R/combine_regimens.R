@@ -19,11 +19,10 @@ combine_regimens <- function(data, input1, input2, output = "antibiotic_treatmen
   ab_ordered <- map_df(1:nrow(data2), function(x){
     temp <- data2 |>
       filter(row_number() == x) |>
-      mutate(across(matches("ab\\d"), ~if_else(is.na(.), "", .)),
-             empty = "")
+      mutate(across(matches("ab\\d"), ~if_else(is.na(.), "", .)))
     
     #This will deduplicate and order all antibiotics alphabetically
-    antibiotic_treatment <- tibble(!!sym(output) := str_c(str_sort(unique(c(str_trim(temp$ab1), str_trim(temp$ab2), str_trim(temp$ab3), {if("ab4" %in% names(temp)) str_trim(temp$ab4) else temp$empty})), collapse = ","))) |>
+    antibiotic_treatment <- tibble(!!sym(output) := str_c(str_sort(unique(c(str_trim(temp$ab1), str_trim(temp$ab2), str_trim(temp$ab3), {if("ab4" %in% names(temp)) str_trim(temp$ab4) else NULL}))), collapse = ",")) |>
       mutate(!!sym(output) := str_remove(!!sym(output), "^\\,"),
              !!sym(output) := str_replace_all(!!sym(output), ",", ", "))
     
