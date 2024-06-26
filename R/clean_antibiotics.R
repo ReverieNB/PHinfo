@@ -4,17 +4,18 @@
 #' @param data a dataframe
 #' @param input the name of the input variable
 #' @param output the name assigned to the cleaned, output variable
-#' @param disease specify either chlamydia, gonorrhea, or syphilis
 #' @export
 
-clean_antibiotics <- function(data, input = "antibiotic_treatment", output = "antibiotic_treatment", disease){
-
-  if (disease == "syphilis"){
-
-    syph <- data |>
-      tidyr::separate_wider_delim(!!sym(input), names = c("ab1", "ab2"), delim = ",", too_few = "align_start", too_many = "error", cols_remove = FALSE) |>
-      dplyr::mutate(dplyr::across(c(ab1, ab2), stringr::str_trim),
-                    dplyr::across(c(ab1, ab2), ~dplyr::case_when(
+clean_antibiotics <- function(data, input = "antibiotic_treatment", output = "antibiotic_treatment"){
+  
+  cleaned_data <- data |>
+    dplyr::mutate(max_drugs = str_count(!!sym(input),",") + 1,
+                  max_drugs = max(max_drugs, na.rm = TRUE)) |>
+    #separate_wider_delim(!!sym(input), names = paste0("xab", 1:max(.$max_drugs)), delim = ",", too_few = "align_start", too_many = "error", cols_remove = FALSE) |>
+    #First, remove dosage and other information from each drug in the field to leave only the base name. May need to sometimes update this with new conversions.
+    separate_wider_delim(!!sym(input), names = c("xab1", "xab2", "xab3"), delim = ",", too_few = "align_start", too_many = "error", cols_remove = FALSE) |>
+    dplyr::mutate(dplyr::across(tidyr::starts_with("xab"), stringr::str_trim),
+                  dplyr::across(tidyr::starts_with("xab"), ~dplyr::case_when(
                     is.na(.) | . == "" ~ "Unknown",
                     stringr::str_length(.) == 1 ~ "Unknown",
                     !is.na(as.numeric(.)) ~ "Unknown",
@@ -34,21 +35,29 @@ clean_antibiotics <- function(data, input = "antibiotic_treatment", output = "an
                     stringr::str_detect(stringr::str_to_lower(.), "^vibramycin") ~ "Vibramycin",
                     stringr::str_detect(stringr::str_to_lower(.), "levaquin") ~ "Levaquin",
                     .default = .)),
-
-             ab2 = dplyr::if_else(ab1 == ab2, "Unknown", ab2),
-             interm = dplyr::if_else(ab2 != "Unknown", paste(ab1, ab2, sep = ","), ab1)) |>
-      tidyr::separate_wider_delim(interm, names = c("ab12", "ab22"), delim = ",", too_few = "align_start", too_many = "error") |>
-      dplyr::mutate(
-        !!sym(output) := dplyr::case_when( #combine like drugs that are in a different order
-          is.na(ab22) ~ ab12,
-          stringr::str_trim(ab12) < stringr::str_trim(ab22) ~ paste0(stringr::str_trim(ab12), ", ", stringr::str_trim(ab22)),
-          stringr::str_trim(ab12) > stringr::str_trim(ab22) ~ paste0(stringr::str_trim(ab22), ", ", stringr::str_trim(ab12)))) |>
-      dplyr::select(-ab1, -ab2, -ab12, -ab22)
-
-    return(syph)
-
-  } else if (!disease %in% c("chlamydia", "gonorrhea", "syphilis")){
-    stop("This function can be used for chlamydia, gonorrhea, or syphilis data. Please specify the intended disease.")
+                  
+                  xab2 = dplyr::if_else(xab1 == xab2, "Unknown", xab2),
+                  xab3 = dplyr::if_else(xab1 == xab3 | xab2 == xab3, "Unknown", xab3),
+                  interm = dplyr::case_when(
+                    xab2 == "Unknown" & xab3 == "Unknown" ~ xab1,
+                    xab3 == "Unknown" ~ paste(xab1, xab2, sep = ","),
+                    xab2 == "Unknown" ~ paste(xab1, xab3, sep = ","),
+                    .default = paste(xab1, xab2, xab3, sep = ","))) |>
+    #Second, arrange the drug names in alphetical order so there aren't dupes of the same drugs in a different order
+    tidyr::separate_wider_delim(interm, names = c("xab12", "xab22", "xab32"), delim = ",", too_few = "align_start", too_many = "error") |>
+    dplyr::mutate(
+      !!sym(output) := dplyr::case_when(
+        is.na(xab22) & is.na(xab32) ~ xab12,
+        is.na(xab32) ~ purrr::pmap_chr(list(xab12, xab22), ~paste(sort(c(...)), collapse = ",")),
+        is.na(xab22) ~ purrr::pmap_chr(list(xab12, xab32), ~paste(sort(c(...)), collapse = ",")),
+        .default = purrr::pmap_chr(list(xab12, xab22, xab32), ~paste(sort(c(...)), collapse = ","))))
+  
+  #Currently this function is only set up to handle a max of 3 drugs in one column. Could expand if necessary.
+  #In this case, combine_regimens would also need to be updated
+  if (max(cleaned_data$max_drugs) > 3) {
+    stop("More than three drugs supplied in one column. Edit function or underlying data to proceed.")
   }
-
+  
+  return(cleaned_data |> select(-starts_with("xab")))
+  
 }

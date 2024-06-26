@@ -7,8 +7,7 @@
 clean_antibiotics(
   data,
   input = "antibiotic_treatment",
-  output = "antibiotic_treatment",
-  disease
+  output = "antibiotic_treatment"
 )
 }
 \arguments{
@@ -17,8 +16,6 @@ clean_antibiotics(
 \item{input}{the name of the input variable}
 
 \item{output}{the name assigned to the cleaned, output variable}
-
-\item{disease}{specify either chlamydia, gonorrhea, or syphilis}
 }
 \description{
 Clean the names of antibiotic treatment regimens in the chlamydia, gonorrhea, and syphilis data. Some prior data cleaning may be required, such as making sure multiple drugs in the same column are separated by commas, and commas are only used for this purpose. The function can be updated as more drugs are added.
