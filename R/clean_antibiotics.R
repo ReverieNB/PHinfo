@@ -37,7 +37,12 @@ clean_antibiotics <- function(data, input = "antibiotic_treatment", output = "an
                     stringr::str_detect(stringr::str_to_lower(.), "^levofloxacin") ~ "Levofloxacin",
                     stringr::str_detect(stringr::str_to_lower(.), "^metronidazole") ~ "Metronidazole",
                     stringr::str_detect(stringr::str_to_lower(.), "^erythromycin") ~ "Erythromycin",
-                    
+                    stringr::str_detect(stringr::str_to_lower(.), "^benzathine penicillin g") & stringr::str_detect(., "2\\.4|2 4") ~ "Benzathine penicillin G 2.4",
+                    stringr::str_detect(stringr::str_to_lower(.), "^benzathine penicillin g") ~ "Benzathine penicillin G",
+                    stringr::str_detect(stringr::str_to_lower(.), "^aqueous crystalline penicillin") ~ "Aqueous crystalline penicillin G",
+                    stringr::str_detect(stringr::str_to_lower(.), "^tetracycline") ~ "Tetracycline",
+                    stringr::str_detect(stringr::str_to_lower(.), "^probenecid") ~ "Probenecid",
+                    stringr::str_detect(stringr::str_to_lower(.), "^penicillin g procaine") ~ "Penicillin G Procaine",
                     
                     stringr::str_detect(stringr::str_to_lower(.), "levaquin") ~ "Levaquin",
                     .default = .)),
