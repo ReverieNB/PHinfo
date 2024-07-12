@@ -27,9 +27,8 @@ clean_antibiotics <- function(data, input = "antibiotic_treatment", output = "an
                     stringr::str_detect(stringr::str_to_lower(.), "^cefadroxil") ~ "Cefadroxil",
                     stringr::str_detect(stringr::str_to_lower(.), "^clindamycin") ~ "Clindamycin",
                     stringr::str_detect(stringr::str_to_lower(.), "^ciprofloxacin") ~ "Ciprofloxacin",
-                    stringr::str_detect(stringr::str_to_lower(.), "^emtricitabine") ~ "Emtricitabine",
-                    stringr::str_detect(stringr::str_to_lower(.), "^macrobid") ~ "Macrobid",
-                    stringr::str_detect(stringr::str_to_lower(.), "^tenofovir") ~ "Tenofovir",
+                    stringr::str_detect(stringr::str_to_lower(.), "^macrobid") ~ "Nitrofurantoin",
+                    stringr::str_detect(stringr::str_to_lower(.), "^tenofovir|^emtricitabine|^bictegravir") ~ "Unknown", #these are antivirals, remove
                     stringr::str_detect(stringr::str_to_lower(.), "^cefoxitin|^mefoxin") ~ "Other",
                     stringr::str_detect(stringr::str_to_lower(.), "^vibramycin") ~ "Vibramycin",
                     stringr::str_detect(stringr::str_to_lower(.), "^amoxicillin") ~ "Amoxicillin",
@@ -45,9 +44,8 @@ clean_antibiotics <- function(data, input = "antibiotic_treatment", output = "an
                     stringr::str_detect(stringr::str_to_lower(.), "^penicillin g procaine") ~ "Penicillin G Procaine",
                     stringr::str_detect(stringr::str_to_lower(.), "^gemifloxacin") ~ "Gemifloxacin",
                     stringr::str_detect(stringr::str_to_lower(.), "^keflex") ~ "Ciprofloxacin",
-                    stringr::str_detect(stringr::str_to_lower(.), "^bictegravir") ~ "Bictegravir",
                     stringr::str_detect(stringr::str_to_lower(.), "^cefdinir") ~ "Cefdinir",
-                    stringr::str_detect(stringr::str_to_lower(.), "^ondansetron|^zofran") ~ "Ondansetron",
+                    stringr::str_detect(stringr::str_to_lower(.), "^ondansetron|^zofran") ~ "Unknown", #not AB
                     
                     stringr::str_detect(stringr::str_to_lower(.), "azithromycin|axithromycin") ~ "Azithromycin",
                     stringr::str_detect(stringr::str_to_lower(.), "levaquin") ~ "Levaquin",
@@ -59,9 +57,7 @@ clean_antibiotics <- function(data, input = "antibiotic_treatment", output = "an
                     stringr::str_detect(stringr::str_to_lower(.), "cefadroxil") ~ "Cefadroxil",
                     stringr::str_detect(stringr::str_to_lower(.), "clindamycin") ~ "Clindamycin",
                     stringr::str_detect(stringr::str_to_lower(.), "ciprofloxacin") ~ "Ciprofloxacin",
-                    stringr::str_detect(stringr::str_to_lower(.), "emtricitabine") ~ "Emtricitabine",
-                    stringr::str_detect(stringr::str_to_lower(.), "macrobid") ~ "Macrobid",
-                    stringr::str_detect(stringr::str_to_lower(.), "tenofovir") ~ "Tenofovir",
+                    stringr::str_detect(stringr::str_to_lower(.), "macrobid") ~ "Nitrofurantoin",
                     stringr::str_detect(stringr::str_to_lower(.), "cefoxitin|mefoxin") ~ "Other",
                     stringr::str_detect(stringr::str_to_lower(.), "vibramycin") ~ "Vibramycin",
                     stringr::str_detect(stringr::str_to_lower(.), "amoxicillin") ~ "Amoxicillin",
@@ -77,9 +73,9 @@ clean_antibiotics <- function(data, input = "antibiotic_treatment", output = "an
                     stringr::str_detect(stringr::str_to_lower(.), "penicillin g procaine") ~ "Penicillin G Procaine",
                     stringr::str_detect(stringr::str_to_lower(.), "gemifloxacin") ~ "Gemifloxacin",
                     stringr::str_detect(stringr::str_to_lower(.), "keflex") ~ "Ciprofloxacin",
-                    stringr::str_detect(stringr::str_to_lower(.), "bictegravir") ~ "Bictegravir",
                     stringr::str_detect(stringr::str_to_lower(.), "cefdinir") ~ "Cefdinir",
-                    stringr::str_detect(stringr::str_to_lower(.), "ondansetron|zofran") ~ "Ondansetron",
+                    stringr::str_detect(stringr::str_to_lower(.), "tenofovir|emtricitabine|bictegravir") ~ "Unknown", #these are antivirals, remove
+                    stringr::str_detect(stringr::str_to_lower(.), "^ondansetron|^zofran") ~ "Unknown", #not AB
                     .default = .)),
                   
                   xab2 = dplyr::if_else(xab1 == xab2, "Unknown", xab2),
