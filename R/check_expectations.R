@@ -42,8 +42,8 @@ check_expectations <- function(data, fail = TRUE, export = TRUE, export_keep = N
   vnames <- names(violations)[str_detect(names(violations), "^exp_")]
   
   walk(vnames, function(x){
-    nme <- str_remove(x, "exp_")
-    coln <- str_remove(nme, "_value*$|_xformat*$|_xmissing*$|_xrange*$|_xtype*$|_xdupe*$")
+    nme <- str_remove(x, "^exp_")
+    coln <- str_remove(nme, "_xvalue*$|_xformat*$|_xmissing*$|_xrange*$|_xtype*$|_xdupe*$")
     vtype <- str_remove(nme, str_c(coln, "_"))
     
     #Get number of violations for each condition
