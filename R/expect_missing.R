@@ -35,7 +35,7 @@ expect_missing <- function(data, value_pairs, warn = FALSE){
     }
     
     #Create exp_ column, return
-    cname <- paste0("exp_", temp_col, "_missing") #define exp_column name
+    cname <- paste0("exp_", temp_col, "_xmissing") #define exp_column name
     exp_col <- tibble(!!sym(cname) := rep(log_value, nrow(data)))
     return(exp_col)
     

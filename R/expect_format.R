@@ -16,7 +16,7 @@ expect_format <- function(data, value_pairs, na_accept = FALSE, warn = FALSE){
     temp_patrn <- value_pairs[[x]]
     
     meta_col <- data |>
-      mutate("exp_{temp_col}_format" := if_else(str_detect(!!sym(temp_col), temp_patrn), TRUE, FALSE), .keep = "none") |>
+      mutate("exp_{temp_col}_xformat" := if_else(str_detect(!!sym(temp_col), temp_patrn), TRUE, FALSE), .keep = "none") |>
       #convert NA to TRUE or FALSE depending on argument
       mutate(across(everything(), ~ if_else(is.na(.), as.logical(na_accept), .)))
     

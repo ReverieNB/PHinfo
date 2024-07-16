@@ -21,7 +21,7 @@ expect_values <- function(data, value_pairs, na_accept = FALSE, warn = FALSE){
     }
     
     meta_col <- data |>
-      mutate("exp_{temp_col}_value" := if_else(!!sym(temp_col) %in% {temp_vals}, TRUE, FALSE), .keep = "none")
+      mutate("exp_{temp_col}_xvalue" := if_else(!!sym(temp_col) %in% {temp_vals}, TRUE, FALSE), .keep = "none")
     
     #If warn is true, print out number of violations
     if (warn == TRUE){

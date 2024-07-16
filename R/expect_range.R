@@ -44,7 +44,7 @@ expect_range <- function(data, value_pairs, na_accept = FALSE, warn = FALSE){
     }
     
     meta_col <- data |>
-      mutate("exp_{temp_col}_range" := if_else(!!sym(temp_col) >= temp_min & !!sym(temp_col) <= temp_max, TRUE, FALSE), .keep = "none") |>
+      mutate("exp_{temp_col}_xrange" := if_else(!!sym(temp_col) >= temp_min & !!sym(temp_col) <= temp_max, TRUE, FALSE), .keep = "none") |>
       #convert NA to TRUE or FALSE depending on argument
       mutate(across(everything(), ~ if_else(is.na(.), as.logical(na_accept), .)))
     

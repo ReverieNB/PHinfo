@@ -37,7 +37,7 @@ expect_unique <- function(data, columns, warn = FALSE){
     }
     
     #Create meta column name
-    cname <- paste0("exp_", paste(temp_col, collapse = "_"), "_dupe") #define exp_column name
+    cname <- paste0("exp_", paste(temp_col, collapse = "_"), "_xdupe") #define exp_column name
     
     #Flag duplicates
     dupe_col <- (duplicated(pull(temp_data[1]), incomparables = NA) | duplicated(pull(temp_data[1]), fromLast = TRUE, incomparables = NA)) |>

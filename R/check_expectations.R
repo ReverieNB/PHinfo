@@ -25,7 +25,8 @@ check_expectations <- function(data, fail = TRUE, export = TRUE, export_keep = N
   
   #Only keep relevant non-'exp' columns as well
   ckeep <- names(violations)[str_detect(names(violations), "^exp_")] |>
-    str_remove_all("exp_|_\\w*$")
+    #THIS WOULD NEED TO UPDATED WHEN NEW FUNCTIONS ARE ADDED. NOT IDEAL, BUT BETTER THAN IT WAS.
+    str_remove_all("exp_|_xvalue*$|_xformat*$|_xmissing*$|_xrange*$|_xtype*$|_xdupe*$")
   
   violations <- violations |>
     select(starts_with("exp_"), all_of(ckeep), all_of(export_keep)) #also add in anything specified in export_keep
@@ -42,7 +43,7 @@ check_expectations <- function(data, fail = TRUE, export = TRUE, export_keep = N
   
   walk(vnames, function(x){
     nme <- str_remove(x, "exp_")
-    coln <- str_remove(nme, "_.*$")
+    coln <- str_remove(nme, "_value*$|_xformat*$|_xmissing*$|_xrange*$|_xtype*$|_xdupe*$")
     vtype <- str_remove(nme, str_c(coln, "_"))
     
     #Get number of violations for each condition

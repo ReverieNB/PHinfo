@@ -27,7 +27,7 @@ expect_type <- function(data, value_pairs, warn = FALSE){
       #The code below will test whether the column is the correct type
       type_test <- eval(parse(text = paste0(if_else(temp_type == "Date", "lubridate::is.", "is."), 
                                             temp_type, "(", dname, "$", temp_col, ")"))) 
-      cname <- paste0("exp_", temp_col, "_type") #define exp_column name
+      cname <- paste0("exp_", temp_col, "_xtype") #define exp_column name
       log_value <- tibble(!!sym(cname) := rep(type_test, nrow(data))) #create named tibble (returned as part of a list)
       
       #If warn is TRUE, notify of violations
