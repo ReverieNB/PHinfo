@@ -12,8 +12,13 @@ combine_regimens <- function(data, input1, input2, output = "antibiotic_treatmen
   
   #Break each drug into its own column
   data2 <- data |>
-    mutate(antibiotic_treatment = if_else(!!sym(input2) != "Unknown", str_c(!!sym(input1), !!sym(input2), sep = ", "), !!sym(input1)),
-           max_drugs = str_count(antibiotic_treatment, ",") + 1) %>%
+    mutate(
+      antibiotic_treatment = case_when(
+        !!sym(input1) != "Unknown" & !!sym(input2) != "Unknown" ~ str_c(!!sym(input1), !!sym(input2), sep = ", "),
+        !!sym(input1) == "Unknown" ~ !!sym(input2),
+        !!sym(input2) == "Unknown" ~ !!sym(input1)),
+      #if_else(!!sym(input2) != "Unknown", str_c(!!sym(input1), !!sym(input2), sep = ", "), !!sym(input1)),
+      max_drugs = str_count(antibiotic_treatment, ",") + 1) %>%
     separate_wider_delim(antibiotic_treatment, names = str_c('ab', 1:max(.$max_drugs)), delim = ",", too_few = "align_start", too_many = "error")
   
   ab_ordered <- map_df(1:nrow(data2), function(x){

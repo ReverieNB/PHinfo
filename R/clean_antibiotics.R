@@ -88,7 +88,6 @@ clean_antibiotics <- function(data, input = "antibiotic_treatment", output = "an
                   xab2 = dplyr::if_else(xab1 == xab2, "Unknown", xab2),
                   xab3 = dplyr::if_else(xab1 == xab3 | xab2 == xab3, "Unknown", xab3),
                   interm = dplyr::case_when(
-                    xab1 == "Unknown" & xab2 != "Unknown" ~ xab2,
                     xab2 == "Unknown" & xab3 == "Unknown" ~ xab1,
                     xab3 == "Unknown" ~ paste(xab1, xab2, sep = ","),
                     xab2 == "Unknown" ~ paste(xab1, xab3, sep = ","),
