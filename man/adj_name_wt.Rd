@@ -7,10 +7,10 @@
 adj_name_wt(data, wt = 0.9)
 }
 \arguments{
-\item{data}{a dataframe created by matching two datasets}
+\item{data}{a dataframe created by matching two data sets}
 
 \item{wt}{the weight affected matches will be assigned if greater than the original weight.}
 }
 \description{
-Adjust the weight of matching in instances where one dataset has a multi-part name and the other doesn't. This can be used to make up for the relative under weighting of these matches.
+Adjust the weight of matching in instances where one data set has a multi-part name and the other doesn't. This can be used to make up for the relative under weighting of these matches.
 }

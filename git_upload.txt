@@ -9,6 +9,7 @@ git pull
 #Change into different branch (not necessary atm, just use main)#
 #But this will also print files that have changed, useful for next code#
 git checkout main
+git status
 
 #Stage files for update
 git add git_update.txt R/expect_range.R 'Update Package.R'
@@ -21,7 +22,7 @@ git push
 
 # OTHER NOTES #
 CLONE
-
+                     
 Verify directory
 cd -
 

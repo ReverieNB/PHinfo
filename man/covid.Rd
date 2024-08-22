@@ -3,7 +3,7 @@
 \docType{data}
 \name{covid}
 \alias{covid}
-\title{Data lake folder path.}
+\title{Data lake folder path}
 \format{
 An object of class \code{character} of length 1.
 }
