@@ -33,7 +33,7 @@ adj_name_wt <- function(data, wt = 0.9){
 
   message(paste0("Weight for ", sum(temp$adj_flag), " match", ifelse(sum(temp$adj_flag) == 1, "", "es"), " adjusted."))
   
-  if (clean_flag == 1){
+  if (exists("clean_flag")){
     temp <- temp |>
       rename(last_flag_1 = last_flag.1, last_flag_2 = last_flag.2, 
              last_name_1 = last_name.1, last_name_2 = last_name.2,
